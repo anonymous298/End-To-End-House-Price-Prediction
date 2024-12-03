@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #2475a7 100%);
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #7f8c8d;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #34495e;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 2rem;
+            }
+        }
+
+        .prediction-container {
+            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .prediction-content {
+            color: white;
+        }
+
+        .prediction-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .prediction-value {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .prediction-note {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>House Details</h1>
+        
+        {% if prediction %}
+        <div class="prediction-container">
+            <div class="prediction-content">
+                <h2>Estimated House Price</h2>
+                <div class="prediction-value">${{ "%.2f"|format(prediction) }}</div>
+                <p class="prediction-note">This estimate is based on the provided features and historical data</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <form action="/form" method="post">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="sqft_living">Living Area (sq ft)</label>
+                    <input type="number" id="sqft_living" name="sqft_living" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sqft_lot">Lot Size (sq ft)</label>
+                    <input type="number" id="sqft_lot" name="sqft_lot" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="floors">Floors</label>
+                    <input type="number" id="floors" name="floors" step="0.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="waterfront">Waterfront</label>
+                    <select id="waterfront" name="waterfront" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="view">View Rating (0-4)</label>
+                    <select id="view" name="view" required>
+                        <option value="0">0 - None</option>
+                        <option value="1">1 - Fair</option>
+                        <option value="2">2 - Average</option>
+                        <option value="3">3 - Good</option>
+                        <option value="4">4 - Excellent</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="condition">Condition (1-5)</label>
+                    <select id="condition" name="condition" required>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Average</option>
+                        <option value="4">4 - Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="grade">Grade (1-13)</label>
+                    <input type="number" id="grade" name="grade" min="1" max="13" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sqft_above">Above Ground sq ft</label>
+                    <input type="number" id="sqft_above" name="sqft_above" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sqft_basement">Basement sq ft</label>
+                    <input type="number" id="sqft_basement" name="sqft_basement" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="yr_built">Year Built</label>
+                    <input type="number" id="yr_built" name="yr_built" min="1900" max="2024" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="yr_renovated">Year Renovated (0 if never)</label>
+                    <input type="number" id="yr_renovated" name="yr_renovated" min="0" max="2024">
+                </div>
+
+                <div class="form-group">
+                    <label for="total_rooms">Total Rooms</label>
+                    <input type="number" id="total_rooms" name="total_rooms" required>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Get Price Prediction</button>
+        </form>
+        <a href="/" class="back-link">← Back to Home</a>
+    </div>
+</body>
+</html>

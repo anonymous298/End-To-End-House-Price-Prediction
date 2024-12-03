@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart House Price Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            text-align: center;
+            padding: 3rem;
+            max-width: 1400px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: #34495e;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            flex: 1;
+            max-width: 350px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+        }
+
+        .feature-card p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #2475a7 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(52, 152, 219, 0.6);
+        }
+
+        @media (max-width: 1024px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .feature-card {
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart House Price Predictor</h1>
+        <p class="subtitle">Get accurate house price predictions powered by advanced Neural Networks.<br>
+            Make informed decisions with our state-of-the-art prediction model.</p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>Advanced AI</h3>
+                <p>Powered by sophisticated Neural Networks for highest accuracy in predictions</p>
+            </div>
+            <div class="feature-card">
+                <h3>Instant Results</h3>
+                <p>Get price predictions in seconds based on your property details</p>
+            </div>
+            <div class="feature-card">
+                <h3>Data-Driven</h3>
+                <p>Trained on extensive real estate data for reliable predictions</p>
+            </div>
+        </div>
+
+        <a href="/form" class="cta-button">Get Your Prediction</a>
+    </div>
+</body>
+</html>
