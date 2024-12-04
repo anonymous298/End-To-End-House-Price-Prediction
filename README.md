@@ -2,7 +2,11 @@
 
 This project is an end-to-end Machine Learning application that predicts the house prices based on user inputs. It includes modular code, a Flask-based web application, and is containerized using Docker for easy deployment.
 
+
 ![1](https://github.com/user-attachments/assets/cd39e430-388f-4c18-9776-3dc0d657aed3)
+
+## Performance
+
 ![Capture1](https://github.com/user-attachments/assets/e0814a7d-d393-48ef-9665-b57828aa5134)
 
 
