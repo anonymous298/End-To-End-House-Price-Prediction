@@ -17,8 +17,8 @@ setup(
     author='Talha',
     author_email='tackletalha@gmail.com',
     version='0.0.1',
-    name='heart-disease',
-    description='this package is about heart disease model',
+    name='house-price',
+    description='this package is about house price model',
     packages=find_packages(),
     install_requires=get_requirements('requirements.txt')
 )

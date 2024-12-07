@@ -1,22 +1,25 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+# Use TensorFlow base image for Python 3.10
+FROM tensorflow/tensorflow:latest-py3
 
-# Set the working directory in the container
+# Set a working directory in the container
 WORKDIR /app
 
-# Copy the project files into the container
-COPY . /app
+# Copy only the requirements file first to leverage Docker caching
+COPY requirements.txt /app/
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy the rest of the application files
+COPY . /app/
+
 # Expose the port your Flask app runs on
 EXPOSE 8080
 
-# Define environment variable for Flask
+# Set environment variables for Flask
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_ENV=production
 
-# Command to run the Flask application
+# Start the Flask application
 CMD ["python", "app.py"]
